@@ -35,3 +35,4 @@ RUN echo -en "*mangle"'\n'\
 "-A INPUT -j REJECT --reject-with icmp-host-prohibited"'\n'\
 "-A FORWARD -j REJECT --reject-with icmp-host-prohibited"'\n'\
 "COMMIT" >> /etc/sysconfig/iptables;
+ENTRYPOINT ["/bin/bash"]
