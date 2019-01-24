@@ -1,4 +1,4 @@
-FROM centos:7
+FROM jelasticdocker/jelastic-centos7-base:latest
 
 RUN yum upgrade -y && yum -y install httpd; yum clean all; systemctl enable httpd.service
 RUN yum -y install iptables-services && systemctl enable iptables
