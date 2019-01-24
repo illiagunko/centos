@@ -35,4 +35,4 @@ RUN echo -en "*mangle"'\n'\
 "-A INPUT -j REJECT --reject-with icmp-host-prohibited"'\n'\
 "-A FORWARD -j REJECT --reject-with icmp-host-prohibited"'\n'\
 "COMMIT" >> /etc/sysconfig/iptables;
-EXPOSE 80 8080 22 443 
+EXPOSE 80 443 8080 8743 9990 9993 8009 4848 4949
