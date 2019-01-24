@@ -2,7 +2,6 @@ FROM centos:7
 
 RUN yum upgrade -y && yum -y install httpd; yum clean all; systemctl enable httpd.service
 RUN yum -y install iptables-services && systemctl enable iptables
-RUN rm -f /etc/sysconfig/iptables && touch /etc/sysconfig/iptables && chmod 600 /etc/sysconfig/iptables;
 RUN echo -en "*mangle"'\n'\
 ":PREROUTING ACCEPT [3:204]"'\n'\
 ":INPUT ACCEPT [3:204]"'\n'\
@@ -34,5 +33,6 @@ RUN echo -en "*mangle"'\n'\
 "-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT"'\n'\
 "-A INPUT -j REJECT --reject-with icmp-host-prohibited"'\n'\
 "-A FORWARD -j REJECT --reject-with icmp-host-prohibited"'\n'\
-"COMMIT" >> /etc/sysconfig/iptables;
+"COMMIT" > /etc/sysconfig/iptables;
+RUN iptables-save && service iptables restart
 EXPOSE 80 443 8080 8743 9990 9993 8009 4848 4949
